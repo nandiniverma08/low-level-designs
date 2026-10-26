@@ -2,6 +2,9 @@ package Builder;
 
 public class Transaction {
 
+//    Builder means: construct one object step by step by specifying the fields you need,
+//    instead of passing many arguments into a constructor.
+
     // Transaction fields
     private final double amount;
     private final String currency;
