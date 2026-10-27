@@ -5,6 +5,9 @@ import Adapter.Payment;
 import Adapter.PaymentAdapter;
 import Adapter.ThirdPartyGateway;
 import Builder.Transaction;
+import Decorator.BasicNotification;
+import Decorator.Notification;
+import Decorator.SMSDecorator;
 import Factory.PaymentCreator;
 import Factory.UPIPaymentCreator;
 import Singleton.PaymentConfig;
@@ -62,7 +65,7 @@ Factory
 
          */
 
-        /* Structural : Adapter
+        /* Structural : Abstract Factory
 
         UIFactory factory = new WindowsFactory();
 
@@ -74,11 +77,19 @@ Factory
 
          */
 
-
+/* Adapter
         ThirdPartyGateway gateway = new ThirdPartyGateway();
 
         Payment payment = new PaymentAdapter(gateway);
 
         payment.pay(500);
+
+ */
+
+        Notification notification = new BasicNotification();
+
+        notification = new SMSDecorator(notification);
+
+        notification.send();
     }
 }
