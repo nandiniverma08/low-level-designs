@@ -1,6 +1,9 @@
 import AbstractFactory.InterfaceTypes;
 import AbstractFactory.UIFactory;
 import AbstractFactory.WindowsFactory;
+import Adapter.Payment;
+import Adapter.PaymentAdapter;
+import Adapter.ThirdPartyGateway;
 import Builder.Transaction;
 import Factory.PaymentCreator;
 import Factory.UPIPaymentCreator;
@@ -59,6 +62,7 @@ Factory
 
          */
 
+        /* Structural : Adapter
 
         UIFactory factory = new WindowsFactory();
 
@@ -67,5 +71,14 @@ Factory
 
         button.render();
         checkbox.render();
+
+         */
+
+
+        ThirdPartyGateway gateway = new ThirdPartyGateway();
+
+        Payment payment = new PaymentAdapter(gateway);
+
+        payment.pay(500);
     }
 }
