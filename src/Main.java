@@ -8,6 +8,7 @@ import Builder.Transaction;
 import Decorator.BasicNotification;
 import Decorator.Notification;
 import Decorator.SMSDecorator;
+import Facade.OrderFacade;
 import Factory.PaymentCreator;
 import Factory.UPIPaymentCreator;
 import Singleton.PaymentConfig;
@@ -85,11 +86,17 @@ Factory
         payment.pay(500);
 
  */
+        /* Decorator
 
         Notification notification = new BasicNotification();
 
         notification = new SMSDecorator(notification);
 
         notification.send();
+
+         */
+
+        OrderFacade order = new OrderFacade();
+        order.placeOrder();
     }
 }
