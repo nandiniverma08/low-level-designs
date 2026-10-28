@@ -11,6 +11,9 @@ import Decorator.SMSDecorator;
 import Facade.OrderFacade;
 import Factory.PaymentCreator;
 import Factory.UPIPaymentCreator;
+import Observer.Observer;
+import Observer.YouTubeChannel;
+import Observer.Subscriber;
 import Singleton.PaymentConfig;
 import Strategy.CardPaymentStrategy;
 import Strategy.PaymentStrategy;
@@ -95,8 +98,21 @@ Factory
         notification.send();
 
          */
+        /*
 
         OrderFacade order = new OrderFacade();
         order.placeOrder();
+
+         */
+
+        YouTubeChannel channel = new YouTubeChannel();
+
+        Observer s1 = new Subscriber("Aman");
+        Observer s2 = new Subscriber("Riya");
+
+        channel.subscribe(s1);
+        channel.subscribe(s2);
+
+        channel.uploadVideo("Java Design Patterns");
     }
 }
