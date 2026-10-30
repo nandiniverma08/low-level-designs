@@ -15,6 +15,10 @@ import Observer.Observer;
 import Observer.YouTubeChannel;
 import Observer.Subscriber;
 import Singleton.PaymentConfig;
+import State.DeliveredState;
+import State.Order;
+import State.PendingState;
+import State.ShippedState;
 import Strategy.CardPaymentStrategy;
 import Strategy.PaymentStrategy;
 import Strategy.UpiPaymentStrategy;
@@ -104,6 +108,7 @@ Factory
         order.placeOrder();
 
          */
+        /*
 
         YouTubeChannel channel = new YouTubeChannel();
 
@@ -114,5 +119,18 @@ Factory
         channel.subscribe(s2);
 
         channel.uploadVideo("Java Design Patterns");
+
+         */
+
+        Order order = new Order();
+
+        order.setState(new PendingState());
+        order.processOrder();
+
+        order.setState(new ShippedState());
+        order.processOrder();
+
+        order.setState(new DeliveredState());
+        order.processOrder();
     }
 }
