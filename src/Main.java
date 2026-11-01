@@ -122,6 +122,8 @@ Factory
 
          */
 
+        /*
+
         Order order = new Order();
 
         order.setState(new PendingState());
@@ -132,5 +134,9 @@ Factory
 
         order.setState(new DeliveredState());
         order.processOrder();
+
+         */
+
+
     }
 }
