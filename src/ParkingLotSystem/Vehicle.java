@@ -1,8 +1,6 @@
 package ParkingLotSystem;
 
-enum VehicleType {
-    BIKE, CAR, TRUCK
-}
+
 public class Vehicle {
 
     private String vehicleNumber;

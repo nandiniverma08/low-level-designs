@@ -14,6 +14,9 @@ import Factory.UPIPaymentCreator;
 import Observer.Observer;
 import Observer.YouTubeChannel;
 import Observer.Subscriber;
+import ParkingLotSystem.ParkingSpot;
+import ParkingLotSystem.Vehicle;
+import ParkingLotSystem.VehicleType;
 import Singleton.PaymentConfig;
 import State.DeliveredState;
 import State.Order;
@@ -136,6 +139,40 @@ Factory
         order.processOrder();
 
          */
+
+        //Parking System
+
+        // 1. Create parking spots
+        ParkingSpot carSpot = new ParkingSpot(101, VehicleType.CAR);
+        ParkingSpot bikeSpot = new ParkingSpot(102, VehicleType.BIKE);
+
+        // 2. Create vehicles
+        Vehicle car = new Vehicle("MP07AB1234", VehicleType.CAR);
+        Vehicle bike = new Vehicle("MP07CD5678", VehicleType.BIKE);
+
+        // 3. Check initial availability
+        System.out.println("Car spot available: " + carSpot.isAvailable());
+
+        // 4. Park car in car spot
+        boolean carParked = carSpot.parkVehicle(car);
+        System.out.println("Car parked: " + carParked);
+
+        // 5. Try parking another car in the same spot
+        Vehicle anotherCar = new Vehicle("MP07EF9999", VehicleType.CAR);
+        boolean anotherCarParked = carSpot.parkVehicle(anotherCar);
+        System.out.println("Another car parked: " + anotherCarParked);
+
+        // 6. Try parking bike in car spot
+        boolean wrongVehicleParked = carSpot.parkVehicle(bike);
+        System.out.println("Bike parked in car spot: " + wrongVehicleParked);
+
+        // 7. Remove car
+        carSpot.removeVehicle();
+        System.out.println("Car spot available after removal: " + carSpot.isAvailable());
+
+        // 8. Park bike in bike spot
+        boolean bikeParked = bikeSpot.parkVehicle(bike);
+        System.out.println("Bike parked: " + bikeParked);
 
 
     }
