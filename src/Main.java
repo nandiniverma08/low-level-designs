@@ -11,6 +11,8 @@ import Decorator.SMSDecorator;
 import Facade.OrderFacade;
 import Factory.PaymentCreator;
 import Factory.UPIPaymentCreator;
+import FoodOrderingSystem.PaymentFactory;
+import FoodOrderingSystem.PaymentService;
 import Observer.Observer;
 import Observer.YouTubeChannel;
 import Observer.Subscriber;
@@ -23,8 +25,9 @@ import State.Order;
 import State.PendingState;
 import State.ShippedState;
 import Strategy.CardPaymentStrategy;
-import Strategy.PaymentStrategy;
+//import Strategy.PaymentStrategy;
 import Strategy.UpiPaymentStrategy;
+import FoodOrderingSystem.PaymentStrategy;
 
 import java.math.BigDecimal;
 
@@ -142,6 +145,8 @@ Factory
 
         //Parking System
 
+        /*
+
         // 1. Create parking spots
         ParkingSpot carSpot = new ParkingSpot(101, VehicleType.CAR);
         ParkingSpot bikeSpot = new ParkingSpot(102, VehicleType.BIKE);
@@ -173,6 +178,22 @@ Factory
         // 8. Park bike in bike spot
         boolean bikeParked = bikeSpot.parkVehicle(bike);
         System.out.println("Bike parked: " + bikeParked);
+
+         */
+
+        // Customer selects UPI
+        String paymentType = "UPI";
+
+        // Factory creates the correct payment object
+        PaymentStrategy strategy =
+                PaymentFactory.getPaymentType(paymentType);
+
+        // PaymentService receives that object
+        PaymentService paymentService =
+                new PaymentService(strategy);
+
+        // Process payment
+        paymentService.processPayment(500);
 
 
     }
