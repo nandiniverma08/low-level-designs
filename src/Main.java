@@ -8,6 +8,7 @@ import Builder.Transaction;
 import Decorator.BasicNotification;
 import Decorator.Notification;
 import Decorator.SMSDecorator;
+import ElevatorSystem.*;
 import Facade.OrderFacade;
 import Factory.PaymentCreator;
 import Factory.UPIPaymentCreator;
@@ -30,6 +31,8 @@ import Strategy.UpiPaymentStrategy;
 import FoodOrderingSystem.PaymentStrategy;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -181,6 +184,8 @@ Factory
 
          */
 
+        /*
+
         // Customer selects UPI
         String paymentType = "UPI";
 
@@ -195,6 +200,34 @@ Factory
         // Process payment
         paymentService.processPayment(500);
 
+         */
+
+        // Step 1: Create elevators
+        Elevator e1 = new Elevator(1, 2, 10);
+        Elevator e2 = new Elevator(2, 7, 10);
+        Elevator e3 = new Elevator(3, 9, 10);
+
+        // Step 2: Store elevators in a list
+        List<Elevator> elevators = new ArrayList<>();
+
+        elevators.add(e1);
+        elevators.add(e2);
+        elevators.add(e3);
+
+        // Step 3: Create scheduler
+        ElevatorScheduler scheduler = new ElevatorScheduler();
+
+        // Step 4: Create controller
+        ElevatorController controller =
+                new ElevatorController(elevators, scheduler);
+
+        // Step 5: User presses UP button on Floor 3
+        Floor floor3 = new Floor(3);
+
+        ElevatorRequest request = floor3.pressUpButton();
+
+        // Step 6: Submit request
+        controller.submitRequest(request);
 
     }
 }
