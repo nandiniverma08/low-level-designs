@@ -203,31 +203,85 @@ Factory
          */
 
         // Step 1: Create elevators
+        // STEP 1: Create elevators
         Elevator e1 = new Elevator(1, 2, 10);
         Elevator e2 = new Elevator(2, 7, 10);
         Elevator e3 = new Elevator(3, 9, 10);
 
-        // Step 2: Store elevators in a list
+        // STEP 2: Create elevator list
         List<Elevator> elevators = new ArrayList<>();
 
         elevators.add(e1);
         elevators.add(e2);
         elevators.add(e3);
 
-        // Step 3: Create scheduler
+        // STEP 3: Create scheduler
         ElevatorScheduler scheduler = new ElevatorScheduler();
 
-        // Step 4: Create controller
+        // STEP 4: Create controller
         ElevatorController controller =
                 new ElevatorController(elevators, scheduler);
 
-        // Step 5: User presses UP button on Floor 3
+        // ==================================
+        // SCENARIO 1: Passenger on Floor 3
+        // ==================================
+
         Floor floor3 = new Floor(3);
 
-        ElevatorRequest request = floor3.pressUpButton();
+        // Passenger presses UP
+        ElevatorRequest request1 = floor3.pressUpButton();
 
-        // Step 6: Submit request
-        controller.submitRequest(request);
+        // Submit request to controller
+        controller.submitRequest(request1);
+
+
+        // ==================================
+        // SCENARIO 2: Passenger on Floor 8
+        // ==================================
+
+        Floor floor8 = new Floor(8);
+
+        // Passenger presses DOWN
+        ElevatorRequest request2 = floor8.pressDownButton();
+
+        // Submit request
+        controller.submitRequest(request2);
+
+
+        // ==================================
+        // SCENARIO 3: Check elevator states
+        // ==================================
+
+        System.out.println("\n----- ELEVATOR STATES -----");
+
+        for (Elevator elevator : controller.getElevators()) {
+
+            System.out.println(
+                    "Elevator ID: " + elevator.getElevatorId()
+            );
+
+            System.out.println(
+                    "Current Floor: " + elevator.getCurrentFloor()
+            );
+
+            System.out.println(
+                    "Direction: " + elevator.getDirection()
+            );
+
+            System.out.println(
+                    "Status: " + elevator.getStatus()
+            );
+
+            System.out.println(
+                    "Available: " + elevator.isAvailable()
+            );
+
+            System.out.println(
+                    "Has Capacity: " + elevator.hasCapacity()
+            );
+
+            System.out.println("---------------------");
+        }
 
     }
 }
